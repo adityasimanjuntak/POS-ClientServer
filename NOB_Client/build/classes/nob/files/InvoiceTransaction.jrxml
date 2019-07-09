@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ca1e084d-9079-48db-a306-0d434fb67506">
+	<property name="ireport.zoom" value="1.8627639691774651"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<paragraph lineSpacing="Single"/>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF">
+				<paragraph lineSpacing="Single"/>
+			</style>
+		</conditionalStyle>
+	</style>
+	<parameter name="NoInvoice" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     nob_transaction."trans_id" AS nob_transaction_trans_id,
+     nob_transaction."trans_date" AS nob_transaction_trans_date,
+     nob_transaction."trans_processby" AS nob_transaction_trans_processby,
+     nob_transaction."trans_updateby" AS nob_transaction_trans_updateby,
+     nob_transaction."trans_id_cust" AS nob_transaction_trans_id_cust,
+     nob_transaction."trans_paymentmethod" AS nob_transaction_trans_paymentmethod,
+     nob_transaction."trans_total_NTA" AS nob_transaction_trans_total_NTA,
+     nob_transaction."trans_total" AS nob_transaction_trans_total,
+     nob_transaction."trans_voucher" AS nob_transaction_trans_voucher,
+     nob_transaction."trans_discount" AS nob_transaction_trans_discount,
+     nob_transaction."trans_payment" AS nob_transaction_trans_payment,
+     nob_transaction."trans_bank" AS nob_transaction_trans_bank,
+     nob_transaction."trans_payment_desc" AS nob_transaction_trans_payment_desc,
+     nob_transaction."trans_status" AS nob_transaction_trans_status,
+     nob_transaction."trans_qr" AS nob_transaction_trans_qr,
+     nob_transaction_detail."id_trans" AS nob_transaction_detail_id_trans,
+     nob_transaction_detail."id_item" AS nob_transaction_detail_id_item,
+     nob_transaction_detail."item_name" AS nob_transaction_detail_item_name,
+     nob_transaction_detail."item_quantity" AS nob_transaction_detail_item_quantity,
+     nob_transaction_detail."item_price" AS nob_transaction_detail_item_price,
+     nob_transaction_detail."item_price_subtotal" AS nob_transaction_detail_item_price_subtotal,
+     nob_distributor."dis_id" AS nob_distributor_dis_id,
+     nob_distributor."dis_name" AS nob_distributor_dis_name,
+     nob_distributor."dis_address" AS nob_distributor_dis_address,
+     nob_distributor."dis_phone" AS nob_distributor_dis_phone,
+     nob_distributor."dis_email" AS nob_distributor_dis_email,
+     nob_distributor."dis_last_tran" AS nob_distributor_dis_last_tran,
+     nob_distributor."dis_status" AS nob_distributor_dis_status,
+     nob_distributor."dis_desc" AS nob_distributor_dis_desc,
+     nob_distributor."dis_add_by" AS nob_distributor_dis_add_by
+FROM
+     "dbo"."nob_transaction" nob_transaction INNER JOIN "dbo"."nob_transaction_detail" nob_transaction_detail ON nob_transaction."trans_id" = nob_transaction_detail."id_trans"
+     INNER JOIN "dbo"."nob_distributor" nob_distributor ON nob_transaction."trans_id_cust" = nob_distributor."dis_id"
+WHERE trans_id = $P{NoInvoice}]]>
+	</queryString>
+	<field name="nob_transaction_trans_id" class="java.lang.String"/>
+	<field name="nob_transaction_trans_date" class="java.util.Date"/>
+	<field name="nob_transaction_trans_processby" class="java.lang.String"/>
+	<field name="nob_transaction_trans_updateby" class="java.lang.String"/>
+	<field name="nob_transaction_trans_id_cust" class="java.lang.String"/>
+	<field name="nob_transaction_trans_paymentmethod" class="java.lang.String"/>
+	<field name="nob_transaction_trans_total_NTA" class="java.lang.Integer"/>
+	<field name="nob_transaction_trans_total" class="java.lang.Integer"/>
+	<field name="nob_transaction_trans_voucher" class="java.lang.String"/>
+	<field name="nob_transaction_trans_discount" class="java.lang.Integer"/>
+	<field name="nob_transaction_trans_payment" class="java.lang.String"/>
+	<field name="nob_transaction_trans_bank" class="java.lang.String"/>
+	<field name="nob_transaction_trans_payment_desc" class="java.lang.String"/>
+	<field name="nob_transaction_trans_status" class="java.lang.String"/>
+	<field name="nob_transaction_trans_qr" class="java.io.InputStream"/>
+	<field name="nob_transaction_detail_id_trans" class="java.lang.String"/>
+	<field name="nob_transaction_detail_id_item" class="java.lang.String"/>
+	<field name="nob_transaction_detail_item_name" class="java.lang.String"/>
+	<field name="nob_transaction_detail_item_quantity" class="java.lang.Integer"/>
+	<field name="nob_transaction_detail_item_price" class="java.lang.Integer"/>
+	<field name="nob_transaction_detail_item_price_subtotal" class="java.lang.Integer"/>
+	<field name="nob_distributor_dis_id" class="java.lang.String"/>
+	<field name="nob_distributor_dis_name" class="java.lang.String"/>
+	<field name="nob_distributor_dis_address" class="java.lang.String"/>
+	<field name="nob_distributor_dis_phone" class="java.lang.String"/>
+	<field name="nob_distributor_dis_email" class="java.lang.String"/>
+	<field name="nob_distributor_dis_last_tran" class="java.lang.String"/>
+	<field name="nob_distributor_dis_status" class="java.lang.String"/>
+	<field name="nob_distributor_dis_desc" class="java.lang.String"/>
+	<field name="nob_distributor_dis_add_by" class="java.lang.String"/>
+	<variable name="GrandTotal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{nob_transaction_detail_item_price_subtotal}]]></variableExpression>
+	</variable>
+	<group name="nob_transaction_detail_id_trans">
+		<groupExpression><![CDATA[$F{nob_transaction_detail_id_trans}]]></groupExpression>
+		<groupHeader>
+			<band height="39">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="7" width="555" height="24" forecolor="#B89F7D" backcolor="#3A393E" uuid="e8af7e25-2426-45a5-8cb4-85cfb507d84c"/>
+					<staticText>
+						<reportElement x="2" y="3" width="95" height="20" forecolor="#FFFFFF" uuid="3fea15e6-5f84-45cb-9a5d-d5a4f7e88680"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+							<font fontName="Times New Roman"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[ID ITEM]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="112" y="3" width="213" height="20" forecolor="#FFFFFF" uuid="ab777ebf-1593-4f44-b55f-a5b9b8931300"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font fontName="Times New Roman"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[ITEM NAME]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="325" y="3" width="25" height="20" forecolor="#FFFFFF" uuid="9385fd03-b7be-484b-98c5-85dc469be78a"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font fontName="Times New Roman"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[QTY]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="368" y="3" width="70" height="20" forecolor="#FFFFFF" uuid="8005b429-ce29-4d96-b2bc-68b23071c099"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font fontName="Times New Roman"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[PRICE]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="453" y="3" width="100" height="20" forecolor="#FFFFFF" uuid="a0c3a36f-f6f9-46d1-83e4-d94f9d617f9c"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font fontName="Times New Roman"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<text><![CDATA[SUBTOTAL]]></text>
+					</staticText>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="235">
+				<staticText>
+					<reportElement x="358" y="18" width="95" height="20" forecolor="#000000" uuid="9e14b92f-5d08-4d3f-86b5-09c51ecb8f20"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[TOTAL :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="358" y="58" width="95" height="20" forecolor="#000000" uuid="982c445d-2a66-4408-ad33-252caa14f4c0"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[GRAND TOTAL :]]></text>
+				</staticText>
+				<textField pattern="Rp , ##0">
+					<reportElement x="453" y="18" width="99" height="20" uuid="227a7d4a-aae2-439d-b2f2-f2a129e4ce02"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{GrandTotal}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="368" y="78" width="184" height="20" forecolor="#000000" uuid="4b93266f-c131-468c-b3df-8985d58d341d"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[#Total sudah termasuk PPN]]></text>
+				</staticText>
+				<textField pattern="Rp , ##0">
+					<reportElement x="453" y="58" width="99" height="20" uuid="6772ebda-e464-4cfb-87cd-6b0826589801"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nob_transaction_trans_total}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="358" y="38" width="95" height="20" forecolor="#000000" uuid="6f155db4-37a1-4d3f-8bc8-6d8fb68a3de6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[DiSCOUNT :]]></text>
+				</staticText>
+				<textField pattern="Rp , ##0">
+					<reportElement x="453" y="38" width="99" height="20" uuid="9fa5af15-1652-40ae-8cb9-b9dee9dda2ca"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nob_transaction_trans_discount}]]></textFieldExpression>
+				</textField>
+				<image scaleImage="RealSize">
+					<reportElement x="463" y="101" width="75" height="85" uuid="16558646-b177-4222-8c7c-a856adceb89a"/>
+					<imageExpression><![CDATA[$F{nob_transaction_trans_qr}]]></imageExpression>
+				</image>
+				<frame>
+					<reportElement mode="Opaque" x="0" y="211" width="555" height="24" forecolor="#D0B48E" backcolor="#00CF98" uuid="2e2c5700-a3a1-4db6-9dab-c155c58d70f3"/>
+					<textField evaluationTime="Report">
+						<reportElement style="Column header" mode="Transparent" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" backcolor="#000000" uuid="d79f16f9-81cc-4939-8f53-0df08993eff4"/>
+						<textElement verticalAlignment="Middle">
+							<font size="10" isBold="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement style="Column header" mode="Transparent" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" backcolor="#000000" uuid="d20be072-43c0-470a-8d92-9af95a2dfe83"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle">
+							<font size="10" isBold="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+					</textField>
+					<textField pattern="EEEEE dd MMMMM yyyy">
+						<reportElement style="Column header" mode="Transparent" x="2" y="1" width="197" height="20" forecolor="#000000" backcolor="#000000" uuid="99482d06-85e3-4a27-bdfd-d089637a013d"/>
+						<textElement verticalAlignment="Middle">
+							<font size="10" isBold="false"/>
+							<paragraph lineSpacing="Single"/>
+						</textElement>
+						<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="263">
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="0" width="555" height="66" uuid="ff5b4245-c1a8-4f2f-99a8-bbe808ea8d27"/>
+				<imageExpression><![CDATA["nob/files/HeaderInvoice.png"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="66" width="555" height="21" uuid="fc63520d-c583-4f69-a212-6d1076801305"/>
+				<imageExpression><![CDATA["nob/files/greenBlock.png"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement x="-1" y="87" width="555" height="138" uuid="f3ef64b4-fb52-4d9b-b702-a14027e8e1a0"/>
+				<imageExpression><![CDATA["nob/files/HeaderInvoice2.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="93" y="107" width="178" height="20" uuid="9599c8f7-c261-40d7-82be-bde91ca90cc5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nob_transaction_trans_id}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="373" y="108" width="157" height="20" uuid="46cf6e90-289e-4b2f-a7dd-bc6af633216a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nob_transaction_trans_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="373" y="142" width="157" height="20" uuid="b808a7b4-82d0-499c-b365-d5c88105bbb9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nob_distributor_dis_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="175" width="156" height="20" uuid="f403cc13-a735-4db0-b70b-5bb62794d138"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nob_distributor_dis_phone}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<staticText>
+				<reportElement x="182" y="0" width="202" height="20" uuid="f4a80931-b53e-4b46-a7aa-f0e13959e167"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DETAIL TRANSACTION]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="21" uuid="03ccdc29-d92c-4191-95b3-1373b1c63d9b"/>
+				<textField>
+					<reportElement x="326" y="0" width="24" height="21" uuid="4a6ad383-0202-4cfa-a965-8d276bc235d2"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nob_transaction_detail_item_quantity}]]></textFieldExpression>
+				</textField>
+				<textField pattern="Rp , ##0">
+					<reportElement x="368" y="0" width="70" height="20" uuid="92e4f09f-b474-41cc-acf3-e8d1e37cc7c1"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nob_transaction_detail_item_price}]]></textFieldExpression>
+				</textField>
+				<textField pattern="Rp , ##0">
+					<reportElement x="453" y="1" width="100" height="20" uuid="07c34f50-c203-4268-837a-0a0d28d5aced"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nob_transaction_detail_item_price_subtotal}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField>
+				<reportElement x="2" y="1" width="95" height="20" uuid="40170b53-fd9b-4462-addb-fb289511fa3b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nob_transaction_detail_id_item}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="1" width="213" height="20" uuid="412742b0-cc14-4c12-81f2-6943397257a6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nob_transaction_detail_item_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="287f524a-acea-4293-ba63-0ac8b49f43cc">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="IdEmp" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     nob_emp."emp_id" AS nob_emp_emp_id,
+     nob_emp."emp_noregister" AS nob_emp_emp_noregister,
+     nob_emp."emp_department" AS nob_emp_emp_department,
+     nob_emp."emp_name" AS nob_emp_emp_name,
+     nob_emp."emp_pob" AS nob_emp_emp_pob,
+     nob_emp."emp_dob" AS nob_emp_emp_dob,
+     nob_emp."emp_gend" AS nob_emp_emp_gend,
+     nob_emp."emp_phone" AS nob_emp_emp_phone,
+     nob_emp."emp_mail" AS nob_emp_emp_mail,
+     nob_emp."emp_photo" AS nob_emp_emp_photo,
+     nob_emp."emp_qr" AS nob_emp_emp_qr,
+     nob_department."dep_id" AS nob_department_dep_id,
+     nob_department."dep_cat" AS nob_department_dep_cat,
+     nob_department."dep_description" AS nob_department_dep_description,
+     nob_department."dep_status" AS nob_department_dep_status,
+     nob_department."dep_sys_status" AS nob_department_dep_sys_status
+FROM
+     "dbo"."nob_department" nob_department INNER JOIN "dbo"."nob_emp" nob_emp ON nob_department."dep_id" = nob_emp."emp_department"
+WHERE emp_id = $P{IdEmp}]]>
+	</queryString>
+	<field name="nob_emp_emp_id" class="java.lang.String"/>
+	<field name="nob_emp_emp_noregister" class="java.lang.String"/>
+	<field name="nob_emp_emp_department" class="java.lang.String"/>
+	<field name="nob_emp_emp_name" class="java.lang.String"/>
+	<field name="nob_emp_emp_pob" class="java.lang.String"/>
+	<field name="nob_emp_emp_dob" class="java.lang.String"/>
+	<field name="nob_emp_emp_gend" class="java.lang.String"/>
+	<field name="nob_emp_emp_phone" class="java.lang.String"/>
+	<field name="nob_emp_emp_mail" class="java.lang.String"/>
+	<field name="nob_emp_emp_photo" class="java.io.InputStream"/>
+	<field name="nob_emp_emp_qr" class="java.io.InputStream"/>
+	<field name="nob_department_dep_id" class="java.lang.String"/>
+	<field name="nob_department_dep_cat" class="java.lang.String"/>
+	<field name="nob_department_dep_description" class="java.lang.String"/>
+	<field name="nob_department_dep_status" class="java.lang.String"/>
+	<field name="nob_department_dep_sys_status" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="743" splitType="Stretch">
+			<image scaleImage="RealSize">
+				<reportElement x="14" y="14" width="241" height="501" uuid="6b4e8201-b0d4-425c-b384-fd132e65502a"/>
+				<imageExpression><![CDATA["nob/files/CocardBg3.png"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement x="94" y="105" width="78" height="96" uuid="bae1ffc5-bc10-4031-b569-accbe2b78600"/>
+				<imageExpression><![CDATA[$F{nob_emp_emp_photo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="14" y="362" width="241" height="20" uuid="652419c2-ac80-4cc3-a565-772069a66c86"/>
+				<textElement textAlignment="Center">
+					<font fontName="Gotham Thin" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nob_emp_emp_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="14" y="227" width="241" height="20" uuid="8c5fe305-a37b-475a-918a-1a2291884d13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gotham" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nob_department_dep_description}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape">
+				<reportElement x="94" y="250" width="78" height="87" uuid="a3a145e4-ce9e-4a1a-8699-949173f160bb"/>
+				<imageExpression><![CDATA[$F{nob_emp_emp_qr}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="14" y="207" width="241" height="20" uuid="348981a2-3a27-4419-b733-b487750edbb9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gotham Black" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nob_emp_emp_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
